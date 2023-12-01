@@ -15,6 +15,7 @@ library(here)
 library(vroom)
 library(dplyr)
 library(tidyr)
+library(knitr)
 library(ggplot2)
 ```
 
@@ -59,5 +60,23 @@ if (any(non_numerical_variables)) {
 } else {
   cat("All numerical values are recognised as numerical.")
 }
+```
+
+## Question 4
+
+```{r}
+num_observations <- nrow(planets)
+num_variables <- ncol(planets)
+
+missing_values_per_var <- colSums(is.na(planets))
+
+missing_obvs <- sum(apply(planets, 1, anyNA))
+
+table_qu4 <- data.frame(
+  Metric = c("Number of Observations", "Number of Variables", "Missing Values per Variable", "Observations with at Least One Missing Value"),
+  Value = c(num_observations, num_variables, toString(missing_values_per_var), missing_obvs)
+)
+
+knitr::kable(table_qu4, format = "markdown")
 ```
 
