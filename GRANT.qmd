@@ -1,12 +1,15 @@
 ---
-title: "GRANT"
+title: "Final_Lab_SG"
 author: "Sarah Grant"
 format: 
   html:
     message: false
     echo: false
 ---
+
 ```{r}
+#| message: false
+#| warning: false
 here::i_am("science_fiction.Rproj")
 library(here)
 library(vroom)
@@ -15,3 +18,6 @@ library(tidyr)
 library(ggplot2)
 ```
 
+## Question 2 - Link to Github Repository
+
+Please find the github project via this [link](https://github.com/sarahgrant1/science_fiction).
