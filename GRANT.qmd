@@ -81,14 +81,31 @@ knitr::kable(table_qu4, format = "markdown")
 ```
 ## Question 5
 ```{r}
+#| message: false
 #| warning: false
 ggplot(planets, aes(x= `Mass (Earth)`, y = `density (earth)`)) +
   geom_point() +
+  geom_smooth() +
   labs(title = "Density of a Planet as a Funtion of its Mass",
        x = "Mass (Earth)",
        y = "Density (Earth)") +
   theme_minimal()
 ```
+## Question 6
+```{r}
+densest_planets <- planets %>%
+  arrange(desc(`density (earth)`)) %>%
+  slice_head(n=5)
 
+least_dense_planets <- planets %>%
+  arrange(`density (earth)`) %>%
+  slice_head(n=5)
 
+combined_extreme_planets <- bind_rows(
+  mutate(select(densest_planets, P_name, `density (earth)`), Extreme_Type = "Densest"),
+  mutate(select(least_dense_planets, P_name, `density (earth)`), Extreme_Type = "Least Dense")
+)
+
+kable(combined_extreme_planets, format = "markdown", caption = "Top 5 Densest and Top 5 Least Dense Planets")
+```
 
