@@ -1,20 +1,13 @@
 ---
-title: "Final_Lab"
+title: "GRANT"
 author: "Sarah Grant"
-format:
+format: 
   html:
     message: false
     echo: false
-  docx:
-    message: false
-    echo: false
-  pdf:
-    message: false
-    echo: false
 ---
-
 ```{r}
-here::i_am("Final_Lab.Rproj")
+here::i_am("science_fiction.Rproj")
 library(here)
 library(vroom)
 library(dplyr)
