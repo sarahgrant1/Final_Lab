@@ -17,7 +17,25 @@ library(dplyr)
 library(tidyr)
 library(ggplot2)
 ```
+```{r}
+#| message: false
+#| warning: false
+planets <- vroom(here("data/data_planets.csv"),delim = ",")
+show_col_types = FALSE
+stardata <- vroom(here("data/star_data.csv"),delim = ",")
+show_col_types = FALSE
+startype <- vroom(here("data/star_types.csv"), delim = ",")
+show_col_types = FALSE
+yerkes <- vroom(here("data/Yerkes_luminosity_classes.csv"), delim = ",")
+show_col_types = FALSE
+```
+## Question 1
+
+Commit of main dataset complete
 
 ## Question 2 - Link to Github Repository
 
 Please find the github project via this [link](https://github.com/sarahgrant1/science_fiction).
+
+
+
