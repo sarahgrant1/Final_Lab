@@ -1,0 +1,24 @@
+---
+title: "Final_Lab"
+author: "Sarah Grant"
+format:
+  html:
+    message: false
+    echo: false
+  docx:
+    message: false
+    echo: false
+  pdf:
+    message: false
+    echo: false
+---
+
+```{r}
+here::i_am("Final_Lab.Rproj")
+library(here)
+library(vroom)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+```
+
