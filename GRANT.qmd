@@ -17,18 +17,16 @@ library(dplyr)
 library(tidyr)
 library(ggplot2)
 ```
+
 ```{r}
 #| message: false
 #| warning: false
-planets <- vroom(here("data/data_planets.csv"),delim = ",")
-show_col_types = FALSE
-stardata <- vroom(here("data/star_data.csv"),delim = ",")
-show_col_types = FALSE
-startype <- vroom(here("data/star_types.csv"), delim = ",")
-show_col_types = FALSE
-yerkes <- vroom(here("data/Yerkes_luminosity_classes.csv"), delim = ",")
-show_col_types = FALSE
+planets <- vroom(here("data/data_planets.csv"))
+stardata <- vroom(here("data/star_data.csv"))
+startype <- vroom(here("data/star_types.csv"))
+yerkes <- vroom(here("data/Yerkes_luminosity_classes.csv"))
 ```
+
 ## Question 1
 
 Commit of main dataset complete
@@ -37,5 +35,29 @@ Commit of main dataset complete
 
 Please find the github project via this [link](https://github.com/sarahgrant1/science_fiction).
 
+## Question 3 - Verifying the Validity of the Loading Process
 
+```{r}
+expected_planets = 1085
+expected_variables = 8
+```
+
+```{r}
+if (nrow(planets) == expected_planets && ncol(planets) == expected_variables) {
+  cat("Loading process has been successful. Number of planets and variables indeed match the expected values.\n")
+} else {
+  stop("Uh oh! Loading process has not been successful.\n")
+}
+```
+```{r}
+planet <- na.omit(planets)
+numerical_variables <- c("Mass (Earth)", "Relative Radius", "density (earth)")
+non_numerical_variables <- sapply(planets[, numerical_variables], function(x) any(!is.na(as.numeric(x)) & !is.finite(as.numeric(x))))
+
+if (any(non_numerical_variables)) {
+  stop("Uh oh! Some of the values within these variables are not recognised as numerical.\n")
+} else {
+  cat("All numerical values are recognised as numerical.")
+}
+```
 
