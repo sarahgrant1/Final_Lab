@@ -119,12 +119,16 @@ kable(combined_extreme_planets, format = "markdown", caption = "Top 5 Densest an
 
 ## Question 7
 ```{r}
-split_and_reframe <- function(planets, variable_name, new_variable_name) {
-  planets %>%
-    select(planet_idx, {{variable_name}}) %>%
-    mutate(str_split({{variable_name}}, pattern = ";", simplify = TRUE), .list = new_variable_name) %>%
-    pull(planets)
-}
+#| message: false
+#| warning: false
+terrain_data <- planets %>%
+  mutate(terrain_type = str_split(type_terrain, pattern = ";")) %>%
+  unnest(terrain_type)
+climate_data <- planets %>%
+  mutate(climate_type = str_split(`Climate Type`, pattern = ";")) %>%
+  unnest(climate_type)
 
+knitr::kable(terrain_data)
+knitr::kable(climate_data)
 ```
 ## Question 8
