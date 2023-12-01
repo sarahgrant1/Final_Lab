@@ -79,4 +79,16 @@ table_qu4 <- data.frame(
 
 knitr::kable(table_qu4, format = "markdown")
 ```
+## Question 5
+```{r}
+#| warning: false
+ggplot(planets, aes(x= `Mass (Earth)`, y = `density (earth)`)) +
+  geom_point() +
+  labs(title = "Density of a Planet as a Funtion of its Mass",
+       x = "Mass (Earth)",
+       y = "Density (Earth)") +
+  theme_minimal()
+```
+
+
 
