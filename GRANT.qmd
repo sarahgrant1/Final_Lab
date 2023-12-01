@@ -17,6 +17,8 @@ library(dplyr)
 library(tidyr)
 library(knitr)
 library(ggplot2)
+library(stringr)
+library(tidyverse)
 ```
 
 ```{r}
@@ -34,7 +36,8 @@ Commit of main dataset complete
 
 ## Question 2 - Link to Github Repository
 
-Please find the github project via this [link](https://github.com/sarahgrant1/science_fiction).
+Please find the github project via this [link](https://github.com/sarahgrant1/FinalLab).
+Please note that this is named differently to the recommended name science_lab. This was due to me creating this repository before recieving the email with the correct name so the commits are sent to this Github repository. Sorry about any confusion!
 
 ## Question 3 - Verifying the Validity of the Loading Process
 
@@ -50,6 +53,7 @@ if (nrow(planets) == expected_planets && ncol(planets) == expected_variables) {
   stop("Uh oh! Loading process has not been successful.\n")
 }
 ```
+
 ```{r}
 planet <- na.omit(planets)
 numerical_variables <- c("Mass (Earth)", "Relative Radius", "density (earth)")
@@ -79,7 +83,9 @@ table_qu4 <- data.frame(
 
 knitr::kable(table_qu4, format = "markdown")
 ```
+
 ## Question 5
+
 ```{r}
 #| message: false
 #| warning: false
@@ -91,7 +97,9 @@ ggplot(planets, aes(x= `Mass (Earth)`, y = `density (earth)`)) +
        y = "Density (Earth)") +
   theme_minimal()
 ```
+
 ## Question 6
+
 ```{r}
 densest_planets <- planets %>%
   arrange(desc(`density (earth)`)) %>%
@@ -109,3 +117,14 @@ combined_extreme_planets <- bind_rows(
 kable(combined_extreme_planets, format = "markdown", caption = "Top 5 Densest and Top 5 Least Dense Planets")
 ```
 
+## Question 7
+```{r}
+split_and_reframe <- function(planets, variable_name, new_variable_name) {
+  planets %>%
+    select(planet_idx, {{variable_name}}) %>%
+    mutate(str_split({{variable_name}}, pattern = ";", simplify = TRUE), .list = new_variable_name) %>%
+    pull(planets)
+}
+
+```
+## Question 8
